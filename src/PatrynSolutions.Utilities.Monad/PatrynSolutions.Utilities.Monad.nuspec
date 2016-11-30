@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>PatrynSolutions.Utilities.Monad</id>
+    <version>1.0.0.1</version>
+    <title>$title$</title>
+    <authors>Jarrod Rackley</authors>
+    <owners>Jarrod Rackley</owners>
+    <licenseUrl>https://www.gnu.org/licenses/gpl-3.0.html</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <language>C#</language>
+    <description>An implementation of Monad in C#. For use as a DTO in personal projects. Some pieces coupld possibly be implemented better. But it should suit the needs of a simple DTO.</description>
+    <releaseNotes>Changes the implementation to a Netstandard/.Net Core class library. Fixed the string ToMaybe extension to better determine if the string is a message, or value.</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Monad</tags>
+    <dependencies>
+      <dependency id="NETStandard.Library" version="1.6.0"></dependency>
+    </dependencies>
+  </metadata>
+</package>

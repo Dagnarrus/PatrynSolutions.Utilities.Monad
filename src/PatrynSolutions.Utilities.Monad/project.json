@@ -1,0 +1,23 @@
+﻿{
+  "version": "1.0.2",
+  "authors": [ "Jarrod Rackley" ],
+  "description": "An implementation of Monad in C#. For use as a DTO in personal projects. Provides a simple data transform and DTO for return value guarantee.",
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  },
+
+  "packOptions": {
+    "owners": [ "Jarrod Rackley" ],
+    "releaseNotes": "Added extensions for the Maybe and MaybeGeneric classes to ensure non-nullability when accessing any properties the Maybe exposes.",
+    "licenseUrl": "https://www.gnu.org/licenses/gpl-3.0.html",
+    "requireLicenseAcceptance": false,
+    "tags": [ "C#", "Monad" ]
+  }
+}
