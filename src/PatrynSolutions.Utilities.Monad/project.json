@@ -3,13 +3,41 @@
   "authors": [ "Jarrod Rackley" ],
   "description": "An implementation of Monad in C#. For use as a DTO in personal projects. Provides a simple data transform and DTO for return value guarantee.",
 
-  "dependencies": {
-    "NETStandard.Library": "1.6.0"
-  },
 
   "frameworks": {
     "netstandard1.6": {
-      "imports": "dnxcore50"
+      "imports": "dnxcore50",
+      "dependencies": {
+        "NETStandard.Library": "1.6.0"
+      }
+    },
+    "dnx451": {
+      "dependencies": {
+        "System.Core": "3.5.21022.801",
+        "System.Collections": "4.0.0",
+        "System.Linq": "4.0.0"
+      }
+    },
+    "net461": {
+      "dependencies": {
+        "System.Core": "3.5.21022.801",
+        "System.Collections": "4.0.10",
+        "System.Linq": "4.0.0"
+      }
+    },
+    "net452": {
+      "dependencies": {
+        "System.Core": "3.5.21022.801",
+        "System.Collections": "4.0.11",
+        "System.Linq": "4.0.0"
+      }
+    },
+    "net451": {
+      "dependencies": {
+        "System.Core": "3.5.21022.801",
+        "System.Collections": "4.0.0",
+        "System.Linq": "4.0.0"
+      }
     }
   },
 

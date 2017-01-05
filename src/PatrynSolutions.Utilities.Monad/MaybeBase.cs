@@ -1,6 +1,8 @@
 ﻿namespace PatrynSolutions.Utilities.Monad
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public abstract class MaybeBase
     {
@@ -39,6 +41,20 @@
             HasMessage = true;
             IsExceptionState = false;
             Message = message;
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="MaybeBase"/> with no value, but a message, and exception for the caller.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="exception"></param>
+        public MaybeBase(string message, Exception exception)
+        {
+            HasValue = false;
+            HasMessage = true;
+            IsExceptionState = true;
+            Message = message;
+            Exception = exception;
         }
 
         #endregion Constructors
