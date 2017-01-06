@@ -34,7 +34,7 @@
         /// <summary>
         /// Creates a new <see cref="MaybeBase"/> with no value, but a message for the caller.
         /// </summary>
-        /// <param name="message">The message for the caller.</param>
+        /// <param name="message">The message to be displayed to the user.</param>
         public MaybeBase(string message)
         {
             HasValue = false;
@@ -46,8 +46,8 @@
         /// <summary>
         /// Creates a new <see cref="MaybeBase"/> with no value, but a message, and exception for the caller.
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="exception"></param>
+        /// <param name="message">The message to be displayed to the user.</param>
+        /// <param name="exception">Th exception thrown within the called code.</param>
         public MaybeBase(string message, Exception exception)
         {
             HasValue = false;
@@ -82,7 +82,7 @@
         public bool HasMessage { get; protected set; }
 
         /// <summary>
-        /// A message containing the reason for no returned value.
+        /// A friendly message to be displayed to the user.
         /// </summary>
         public string Message { get; protected set; }
 

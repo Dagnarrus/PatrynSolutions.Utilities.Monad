@@ -33,14 +33,21 @@
         /// <summary>
         /// Creates a new <see cref="Maybe"/> with the exception thrown in the called code.
         /// </summary>
-        /// <param name="exception"></param>
+        /// <param name="exception">The exception thrown within the called code.</param>
         public Maybe(Exception exception) : base(exception) { }
 
         /// <summary>
         /// Creates a new <see cref="Maybe"/> with the given message.
         /// </summary>
-        /// <param name="message">The message for the caller.</param>
+        /// <param name="message">The message to be displayed to the user.</param>
         public Maybe(string message) : base(message) { }
+
+        /// <summary>
+        /// Creates a new <see cref="Maybe"/> with a message and exception, but no value.
+        /// </summary>
+        /// <param name="message">The message to be displayed to the user.</param>
+        /// <param name="exception">The exception thrown within the called code.</param>
+        public Maybe(string message, Exception exception) : base(message, exception) { }
 
         #endregion Constructor
 
@@ -53,6 +60,24 @@
         public static Maybe Empty()
         {
             return new Maybe();
+        }
+
+        /// <summary>
+        /// Returns a new <see cref="Maybe"/> with a value of <see cref="true"/>.
+        /// </summary>
+        /// <returns>A new <see cref="Maybe"/> with a value of <see cref="true"/></returns>
+        public static Maybe Success()
+        {
+            return new Maybe(true);
+        }
+
+        /// <summary>
+        /// Returns a new <see cref="Maybe"/> with a value of <see cref="false"/>.
+        /// </summary>
+        /// <returns>A new <see cref="Maybe"/> with a value of <see cref="false"/></returns>
+        public static Maybe Failure()
+        {
+            return new Maybe(false);
         }
 
         #endregion Public Methods

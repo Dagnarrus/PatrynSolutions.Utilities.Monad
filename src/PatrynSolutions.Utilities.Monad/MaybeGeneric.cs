@@ -56,6 +56,13 @@
 
         public Maybe(Exception exception) : base(exception) { }
 
+        /// <summary>
+        /// Creates a new <see cref="Maybe{T}"/> with the message and exception, but no value.
+        /// </summary>
+        /// <param name="message">The message to be displayed to the user.</param>
+        /// <param name="exception">The exception thrown within the called code.</param>
+        public Maybe(string message, Exception exception) : base(message, exception) { }
+
         #endregion Constructors
 
         #region Public Methods
