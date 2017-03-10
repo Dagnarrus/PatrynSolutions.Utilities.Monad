@@ -5,12 +5,6 @@
     public class Maybe : MaybeBase
     {
 
-        #region Private Members
-
-        private bool value;
-
-        #endregion Private Members
-
         #region Constructor
 
         /// <summary>
@@ -80,6 +74,27 @@
             return new Maybe(false);
         }
 
+        /// <summary>
+        /// Returns a new instance of <see cref="Maybe"/> with no value, and the <paramref name="message"/> set.
+        /// </summary>
+        /// <param name="message">The message to wrap</param>
+        /// <returns>A new instance of <see cref="Maybe"/> with the wrapped message.</returns>
+        public static Maybe Failure(string message)
+        {
+            return new Monad.Maybe(message);
+        }
+
+        /// <summary>
+        /// Returnes a new instance of <see cref="Maybe"/> with no value, and the <paramref name="exception"/> set. 
+        /// This will set <see cref="MaybeBase.IsExceptionState"/> to <c>true</c>.
+        /// </summary>
+        /// <param name="exception">The exception to wrap in the <see cref="Maybe"/></param>
+        /// <returns>A new instance of <see cref="Maybe"/> with the wrapped exception.</returns>
+        public static Maybe Failure(Exception exception)
+        {
+            return new Maybe(exception);
+        }
+
         #endregion Public Methods
 
         #region Properties
@@ -88,17 +103,7 @@
         /// The value of a caller's result. For non-generic <see cref="Maybe"/>, will only ever be true or false. 
         /// Thus it should be used to decalare the success or failure status of the call.
         /// </summary>
-        public bool Value
-        {
-            get
-            {
-                return value;
-            }
-            set
-            {
-                this.value = value;
-            }
-        }
+        public bool Value { get; private set; }
 
         #endregion Properties
     }

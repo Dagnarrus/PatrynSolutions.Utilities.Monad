@@ -140,7 +140,6 @@
         /// <returns></returns>
         public static Maybe<T> ToMaybe<T>(this T value)
         {
-            //var m = new Maybe<T>(new Exception());
             if (value == null || (value is object && EqualityComparer<T>.Default.Equals(default(T), value)))
             {
                 return Maybe<T>.Empty();

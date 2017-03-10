@@ -1,5 +1,5 @@
-﻿{
-  "version": "1.0.3",
+{
+  "version": "1.0.4",
   "authors": [ "Jarrod Rackley" ],
   "description": "An implementation of Monad in C#. For use as a DTO in personal projects. Provides a simple data transform and DTO for return value guarantee.",
 
@@ -15,36 +15,43 @@
       "dependencies": {
         "System.Core": "3.5.21022.801",
         "System.Collections": "4.0.0",
-        "System.Linq": "4.0.0"
+        "System.Linq": "4.0.0",
+        "dotnet-test-xunit": "2.2.0-preview2-build1029"
       }
     },
     "net461": {
       "dependencies": {
         "System.Core": "3.5.21022.801",
         "System.Collections": "4.0.10",
-        "System.Linq": "4.0.0"
+        "System.Linq": "4.0.0",
+        "dotnet-test-xunit": "2.2.0-preview2-build1029"
       }
     },
     "net452": {
       "dependencies": {
         "System.Core": "3.5.21022.801",
         "System.Collections": "4.0.0",
-        "System.Linq": "4.0.0"
+        "System.Linq": "4.0.0",
+        "dotnet-test-xunit": "2.2.0-preview2-build1029"
       }
     },
     "net451": {
       "dependencies": {
         "System.Core": "3.5.21022.801",
         "System.Collections": "4.0.0",
-        "System.Linq": "4.0.0"
+        "System.Linq": "4.0.0",
+        "dotnet-test-xunit": "2.2.0-preview2-build1029"
       }
     }
   },
 
   "packOptions": {
     "owners": [ "Jarrod Rackley" ],
-    "releaseNotes": "Added a constructor overload to allow a friendly message and exception to be wrapped within the same Maybe. Added build targets for the frameworks: dnx451, .Net 4.5.1/2, .Net 4.6.1",
-    "licenseUrl": "https://www.gnu.org/licenses/gpl-3.0.html",
+    "releaseNotes": "Changed license to Apache 2.0. Added Success and Failure methods to Maybe",
+    "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0",
+    "repository": {
+      "url": "https://github.com/TeturactsWill/PatrynSolutions.Utilities.Monad"
+    },
     "requireLicenseAcceptance": false,
     "tags": [ "C#", "Monad" ]
   }
