@@ -17,6 +17,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "UnitTests.NetStandard_Old",
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "UnitTests.NetStandard", "UnitTests.NetStandard\UnitTests.NetStandard.xproj", "{5F107B33-AA85-4B7F-86EF-005D0ABDA6AF}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "PatrynSolutions.Utilities.Monad.LocalTesting", "src\PatrynSolutions.Utilities.Monad.LocalTesting\PatrynSolutions.Utilities.Monad.LocalTesting.xproj", "{06A6361D-7E21-4378-A7D8-A05AFA19B115}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{5F107B33-AA85-4B7F-86EF-005D0ABDA6AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F107B33-AA85-4B7F-86EF-005D0ABDA6AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F107B33-AA85-4B7F-86EF-005D0ABDA6AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06A6361D-7E21-4378-A7D8-A05AFA19B115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06A6361D-7E21-4378-A7D8-A05AFA19B115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06A6361D-7E21-4378-A7D8-A05AFA19B115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06A6361D-7E21-4378-A7D8-A05AFA19B115}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,5 +48,6 @@ Global
 		{656EC8D3-8F7A-48ED-801F-1DFED248986E} = {9C8F5D35-82EC-4FF0-BB64-4E39024EB5C9}
 		{1799BD55-C2BC-4178-B541-C9D91A546257} = {9C8F5D35-82EC-4FF0-BB64-4E39024EB5C9}
 		{5F107B33-AA85-4B7F-86EF-005D0ABDA6AF} = {9C8F5D35-82EC-4FF0-BB64-4E39024EB5C9}
+		{06A6361D-7E21-4378-A7D8-A05AFA19B115} = {9C8F5D35-82EC-4FF0-BB64-4E39024EB5C9}
 	EndGlobalSection
 EndGlobal

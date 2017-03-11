@@ -61,30 +61,7 @@
         
         #region Properties
 
-        /// <summary>
-        /// Whether the maybe has a value for the caller.
-        /// </summary>
-        public bool HasValue { get; protected set; }
-
-        /// <summary>
-        /// True if an exception was thrown and wrapped.
-        /// </summary>
-        public bool IsExceptionState { get; protected set; }
-
-        /// <summary>
-        /// The exception thrown during the user's request.
-        /// </summary>
-        public Exception Exception { get; protected set; }
-
-        /// <summary>
-        /// True if there is a message for the caller to be returned.
-        /// </summary>
-        public bool HasMessage { get; protected set; }
-
-        /// <summary>
-        /// A friendly message to be displayed to the user.
-        /// </summary>
-        public string Message { get; protected set; }
+        
 
         #endregion Properties
     }

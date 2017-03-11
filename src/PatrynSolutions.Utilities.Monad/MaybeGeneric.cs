@@ -2,15 +2,10 @@
 {
     using System;
 
-    public class Maybe<T> : MaybeBase
+    public struct Maybe<T>
     {
 
         #region Constructors
-
-        /// <summary>
-        /// Creates a new <see cref="Maybe{T}"/> with no value.
-        /// </summary>
-        public Maybe() : base() { }
 
         /// <summary>
         /// Creates a new <see cref="Maybe{T}"/> with the value given. If the value is null, it will display as if no value were given.
@@ -19,9 +14,13 @@
         public Maybe(T value) 
         {
             HasValue = value != null;
-            HasMessage = false;
-            IsExceptionState = false;
             Value = value;
+
+            HasMessage =
+            IsExceptionState = false;
+
+            Message = null;
+            Exception = null;
         }
 
         /// <summary>
@@ -37,6 +36,9 @@
             if (HasMessage = (isMessage || typeof(T) != typeof(string)))
             {
                 Message = value;
+
+                Value = default(T);
+                HasValue = false;
             }
             else
             {
@@ -47,21 +49,49 @@
                     Value = (T)Convert.ChangeType(value, typeof(T));
                     HasValue = true;
                 }
-                catch { }
+                catch
+                {
+                    Value = default(T);
+                    HasValue = false;
+                }
+
+                HasMessage = false;
+                Message = null;
             }
 
             IsExceptionState = false;
+            Exception = null;
         }
 
 
-        public Maybe(Exception exception) : base(exception) { }
+        public Maybe(Exception exception)
+        {
+            IsExceptionState = exception != null;
+            Exception = exception;
+
+            Value = default(T);
+            Message = null;
+
+            HasValue =
+            HasMessage = false;
+        }
 
         /// <summary>
         /// Creates a new <see cref="Maybe{T}"/> with the message and exception, but no value.
         /// </summary>
         /// <param name="message">The message to be displayed to the user.</param>
         /// <param name="exception">The exception thrown within the called code.</param>
-        public Maybe(string message, Exception exception) : base(message, exception) { }
+        public Maybe(string message, Exception exception)
+        {
+            HasMessage = !string.IsNullOrEmpty(message);
+            Message = message;
+
+            IsExceptionState = exception != null;
+            Exception = exception;
+
+            HasValue = false;
+            Value = default(T);
+        }
 
         #endregion Constructors
 
@@ -78,12 +108,61 @@
 
         #endregion Public Methods
 
+        #region Implicit Operators
+
+        public static implicit operator T (Maybe<T> maybe)
+        {
+            return maybe.Value;
+        }
+
+        public static implicit operator Maybe<T> (T value)
+        {
+            return new Maybe<T>(value);
+        }
+
+        public static implicit operator Maybe<T> (string message)
+        {
+            return new Maybe<T>(message);
+        }
+
+        public static implicit operator Maybe<T> (Exception exception)
+        {
+            return new Maybe<T>(exception);
+        }
+
+        #endregion Implicit Operators
+
         #region Properties
 
         /// <summary>
         /// The value for the caller.
         /// </summary>
         public T Value { get; private set; }
+
+        /// <summary>
+        /// Whether the maybe has a value for the caller.
+        /// </summary>
+        public bool HasValue { get; private set; }
+
+        /// <summary>
+        /// True if an exception was thrown and wrapped.
+        /// </summary>
+        public bool IsExceptionState { get; private set; }
+
+        /// <summary>
+        /// The exception thrown during the user's request.
+        /// </summary>
+        public Exception Exception { get; private set; }
+
+        /// <summary>
+        /// True if there is a message for the caller to be returned.
+        /// </summary>
+        public bool HasMessage { get; private set; }
+
+        /// <summary>
+        /// A friendly message to be displayed to the user.
+        /// </summary>
+        public string Message { get; private set; }
 
         #endregion Properties
     }
