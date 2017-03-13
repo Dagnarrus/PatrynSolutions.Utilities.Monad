@@ -7,12 +7,12 @@
         public static void Main(string[] args)
         {
             var maybe = new Maybe<string>();
-            Maybe<string> nulM = null;
+            //Maybe<string> nulM = null;
 
             var hasValue = maybe.HasValue;
             var value = maybe.Value;
 
-            var test = nulM.Value();
+            //var test = nulM.Value();
         }
     }
 }

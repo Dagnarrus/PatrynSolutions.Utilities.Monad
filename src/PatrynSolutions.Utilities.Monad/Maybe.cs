@@ -62,7 +62,14 @@
         /// <param name="exception">The exception thrown within the called code.</param>
         public Maybe(string message, Exception exception)
         {
+            IsExceptionState = exception != null;
+            Exception = exception;
 
+            HasMessage = !string.IsNullOrEmpty(message);
+            Message = message;
+
+            HasValue =
+            Value = false;
         }
 
         #endregion Constructor

@@ -158,7 +158,7 @@
         [Fact]
         public void AccessPropertiesOfNullMaybe()
         {
-            Maybe maybe = null;
+            Maybe maybe = default(Maybe);
 
             try
             {
