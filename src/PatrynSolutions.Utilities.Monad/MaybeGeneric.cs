@@ -2,16 +2,16 @@
 {
     using System;
 
-    public struct Maybe<T>
+    public struct Maybe<TValue>
     {
 
         #region Constructors
 
         /// <summary>
-        /// Creates a new <see cref="Maybe{T}"/> with the value given. If the value is null, it will display as if no value were given.
+        /// Creates a new <see cref="Maybe{TValue}"/> with the value given. If the value is null, it will display as if no value were given.
         /// </summary>
         /// <param name="value">The value to be wrapped.</param>
-        public Maybe(T value) 
+        public Maybe(TValue value) 
         {
             HasValue = value != null;
             Value = value;
@@ -24,7 +24,7 @@
         }
 
         /// <summary>
-        /// Creates a new <see cref="Maybe{T}"/> with the message. If the parameter <paramref name="isMessage"/> is true, or the wrapped 
+        /// Creates a new <see cref="Maybe{TValue}"/> with the message. If the parameter <paramref name="isMessage"/> is true, or the wrapped 
         /// type is not string, a valueless object with a message will be created. Should the type be string, or a derviation, the string 
         /// will be set as the value.
         /// </summary>
@@ -33,11 +33,11 @@
         public Maybe(string value, bool isMessage = false)
         {
             //Assume that if "isMessage" is false, but type is not string, that the string IS a message.
-            if (HasMessage = (isMessage || typeof(T) != typeof(string)))
+            if (HasMessage = (isMessage || typeof(TValue) != typeof(string)))
             {
                 Message = value;
 
-                Value = default(T);
+                Value = default(TValue);
                 HasValue = false;
             }
             else
@@ -46,12 +46,12 @@
                 //But just in case...
                 try
                 {
-                    Value = (T)Convert.ChangeType(value, typeof(T));
+                    Value = (TValue)Convert.ChangeType(value, typeof(TValue));
                     HasValue = true;
                 }
                 catch
                 {
-                    Value = default(T);
+                    Value = default(TValue);
                     HasValue = false;
                 }
 
@@ -63,13 +63,16 @@
             Exception = null;
         }
 
-
+        /// <summary>
+        /// Creates a new <see cref="Maybe{TValue}"/> with the <paramref name="exception"/>.
+        /// </summary>
+        /// <param name="exception">The exception being wrapped.</param>
         public Maybe(Exception exception)
         {
             IsExceptionState = exception != null;
             Exception = exception;
 
-            Value = default(T);
+            Value = default(TValue);
             Message = null;
 
             HasValue =
@@ -77,7 +80,7 @@
         }
 
         /// <summary>
-        /// Creates a new <see cref="Maybe{T}"/> with the message and exception, but no value.
+        /// Creates a new <see cref="Maybe{TValue}"/> with the message and exception, but no value.
         /// </summary>
         /// <param name="message">The message to be displayed to the user.</param>
         /// <param name="exception">The exception thrown within the called code.</param>
@@ -90,7 +93,7 @@
             Exception = exception;
 
             HasValue = false;
-            Value = default(T);
+            Value = default(TValue);
         }
 
         #endregion Constructors
@@ -98,36 +101,52 @@
         #region Public Methods
 
         /// <summary>
-        /// Creates a new <see cref="Maybe{T}"/> with no value.
+        /// Creates a new <see cref="Maybe{TValue}"/> with no value.
         /// </summary>
-        /// <returns><see cref="Maybe{T}"/> with no value.</returns>
-        public static Maybe<T> Empty()
+        /// <returns><see cref="Maybe{TValue}"/> with no value.</returns>
+        public static Maybe<TValue> Empty()
         {
-            return new Maybe<T>();
+            return new Maybe<TValue>();
         }
 
         #endregion Public Methods
 
         #region Implicit Operators
 
-        public static implicit operator T (Maybe<T> maybe)
+        /// <summary>
+        /// Unwraps the value contained in the <see cref="Maybe{TValue}"/>
+        /// </summary>
+        /// <param name="maybe">The maybe that wrapped the value.</param>
+        public static implicit operator TValue (Maybe<TValue> maybe)
         {
             return maybe.Value;
         }
 
-        public static implicit operator Maybe<T> (T value)
+        /// <summary>
+        /// Wraps the <paramref name="value"/> in a new <see cref="Maybe{TValue}"/>.
+        /// </summary>
+        /// <param name="value">The value to be wrapped.</param>
+        public static implicit operator Maybe<TValue> (TValue value)
         {
-            return new Maybe<T>(value);
+            return new Maybe<TValue>(value);
         }
 
-        public static implicit operator Maybe<T> (string message)
+        /// <summary>
+        /// Wraps the <paramref name="message"/> in a new <see cref="Maybe{TValue}"/>
+        /// </summary>
+        /// <param name="message">The message to be wrapped in the value.</param>
+        public static implicit operator Maybe<TValue> (string message)
         {
-            return new Maybe<T>(message);
+            return new Maybe<TValue>(message);
         }
 
-        public static implicit operator Maybe<T> (Exception exception)
+        /// <summary>
+        /// Wraps the exception in a new <see cref="Maybe{TValue}"/>.
+        /// </summary>
+        /// <param name="exception">The exception to be wrapped.</param>
+        public static implicit operator Maybe<TValue> (Exception exception)
         {
-            return new Maybe<T>(exception);
+            return new Maybe<TValue>(exception);
         }
 
         #endregion Implicit Operators
@@ -135,9 +154,9 @@
         #region Properties
 
         /// <summary>
-        /// The value for the caller.
+        /// The wrapped value for the caller.
         /// </summary>
-        public T Value { get; private set; }
+        public TValue Value { get; private set; }
 
         /// <summary>
         /// Whether the maybe has a value for the caller.

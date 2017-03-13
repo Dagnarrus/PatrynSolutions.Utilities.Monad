@@ -24,7 +24,7 @@
         }
 
         /// <summary>
-        /// Creates a new <see cref="Maybe"/> with the exception thrown in the called code.
+        /// Creates a new <see cref="Maybe"/> with the <paramref name="exception"/>.
         /// </summary>
         /// <param name="exception">The exception thrown within the called code.</param>
         public Maybe(Exception exception)
@@ -40,7 +40,7 @@
         }
 
         /// <summary>
-        /// Creates a new <see cref="Maybe"/> with the given message.
+        /// Creates a new <see cref="Maybe"/> with the given <paramref name="message"/>.
         /// </summary>
         /// <param name="message">The message to be displayed to the user.</param>
         public Maybe(string message)
