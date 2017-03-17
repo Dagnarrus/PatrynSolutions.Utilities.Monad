@@ -123,6 +123,18 @@
         }
 
         /// <summary>
+        /// Returns the <see cref="Maybe{TValue}.HasValue"/>, unless the wrapped type is <see cref="bool"/>. Then it returns the <see cref="Maybe{TValue}.Value"/>.
+        /// </summary>
+        /// <param name="maybe">The maybe who's value is being unwrapped</param>
+        public static implicit operator bool (Maybe<TValue> maybe)
+        {
+            if (maybe.Value is bool)
+                return Convert.ToBoolean(maybe.Value);
+
+            return maybe.HasValue;
+        }
+
+        /// <summary>
         /// Wraps the <paramref name="value"/> in a new <see cref="Maybe{TValue}"/>.
         /// </summary>
         /// <param name="value">The value to be wrapped.</param>

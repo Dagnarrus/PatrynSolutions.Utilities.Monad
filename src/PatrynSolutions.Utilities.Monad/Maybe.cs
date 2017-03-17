@@ -126,6 +126,30 @@
 
         #endregion Public Methods
 
+        #region Implicit Operators
+
+        public static implicit operator Maybe (bool value)
+        {
+            return new Maybe(value);
+        }
+
+        public static implicit operator bool (Maybe maybe)
+        {
+            return maybe.Value;
+        }
+
+        public static implicit operator Maybe (string message)
+        {
+            return new Maybe(message);
+        }
+
+        public static implicit operator Maybe (Exception exception)
+        {
+            return new Maybe(exception);
+        }
+
+        #endregion Implicit Operators
+
         #region Properties
 
         /// <summary>
