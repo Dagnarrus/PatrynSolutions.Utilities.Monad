@@ -51,6 +51,29 @@
         }
 
         /// <summary>
+        /// Creates a new <see cref="Maybe"/> with the <paramref name="exceptions"/>, and no value.
+        /// </summary>
+        /// <param name="exceptions">An enumerable of collected to be wrapped and passed back.</param>
+        public Maybe(IEnumerable<Exception> exceptions)
+        {
+            IsExceptionState = exceptions != null;
+            Exceptions = new List<Exception>(exceptions);
+            //Should we put the first exception in this property?
+            Exception = null;
+
+            Message =
+            FriendlyMessage = null;
+
+            ErrorCode = 0;
+
+            Value = 
+            HasValue =
+            HasMessage =
+            HasErrorCode =
+            HasFriendlyMessage = false;
+        }
+
+        /// <summary>
         /// Creates a new <see cref="Maybe"/> with the given <paramref name="message"/>.
         /// </summary>
         /// <param name="message">The message to be displayed to the user.</param>

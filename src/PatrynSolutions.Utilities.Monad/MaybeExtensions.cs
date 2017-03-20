@@ -27,13 +27,16 @@
         {
             return new Maybe(message);
         }
-        
+
         /// <summary>
-        /// 
+        /// Converts a <see cref="Maybe"/> into a <see cref="Maybe{TValue}"/>. This conversion currently does not perform checks for 
+        /// constructs that were created through the multiparameter constructors. IE a <see cref="Maybe"/> created with both a 
+        /// <see cref="Maybe{TValue}.Message"/> and <see cref="Maybe{TValue}.FriendlyMessage"/> will currently only return a new 
+        /// <see cref="Maybe{TValue}"/> with just a <see cref="Maybe.Message"/> value.
         /// </summary>
-        /// <typeparam name="TValue"></typeparam>
-        /// <param name="maybe"></param>
-        /// <returns></returns>
+        /// <typeparam name="TValue">The type of the maybe being created.</typeparam>
+        /// <param name="maybe">The maybe being converted.</param>
+        /// <returns>A new <see cref="Maybe{TValue}"/> with the values of the current maybe.</returns>
         public static Maybe<TValue> ConvertMaybeToMaybeGeneric<TValue>(this Maybe maybe) where TValue : new()
         {
             if (maybe.HasValue)
@@ -46,6 +49,21 @@
 
             if (maybe.HasMessage && maybe.IsExceptionState)
                 return new Maybe<TValue>(maybe.Message, maybe.Exception);
+
+            if (maybe.HasMessage)
+                return new Maybe<TValue>(maybe.Message);
+
+            if (maybe.HasFriendlyMessage)
+                return new Maybe<TValue>(maybe.FriendlyMessage, isFriendlyMessage: true);
+            
+            if (maybe.IsExceptionState && maybe.Exception != null)
+                return new Maybe<TValue>(maybe.Exception);
+
+            if (maybe.Exceptions.Count > 0)
+                return new Maybe<TValue>(maybe.Exceptions);
+
+            if (maybe.HasErrorCode)
+                return new Maybe<TValue>(maybe.ErrorCode);
 
             return Maybe<TValue>.Empty();
         }
@@ -117,13 +135,14 @@
             if (maybe.HasFriendlyMessage)
                 return new Maybe(maybe.FriendlyMessage, isFriendlyMessage: true);
 
-            if (maybe.IsExceptionState)
+            if (maybe.IsExceptionState && maybe.Exception != null)
                 return new Maybe(maybe.Exception);
 
             if (maybe.Exceptions.Count > 0)
                 return new Maybe(maybe.Exceptions);
 
-            if (maybe.)
+            if (maybe.HasErrorCode)
+                return new Maybe(maybe.ErrorCode);
 
             return Maybe.Empty();
         }
