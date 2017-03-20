@@ -52,6 +52,6 @@
         /// <summary>
         /// A list of exceptions, usually meant for cascading failures within code. This is a side option to embedding the exceptions within the inner exception of each parent.
         /// </summary>
-        IList<Exception> ExceptionList { get; }
+        IList<Exception> Exceptions { get; }
     }
 }

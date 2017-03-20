@@ -28,6 +28,28 @@
             return new Maybe(message);
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="maybe"></param>
+        /// <returns></returns>
+        public static Maybe<TValue> ConvertMaybeToMaybeGeneric<TValue>(this Maybe maybe) where TValue : new()
+        {
+            if (maybe.HasValue)
+            {
+                if (typeof(TValue) == typeof(bool))
+                    return new Maybe<TValue>((TValue)Convert.ChangeType(maybe.Value, typeof(TValue)));
+
+                return new Maybe<TValue>(new TValue());
+            }
+
+            if (maybe.HasMessage && maybe.IsExceptionState)
+                return new Maybe<TValue>(maybe.Message, maybe.Exception);
+
+            return Maybe<TValue>.Empty();
+        }
+
         #endregion Maybe Extensions
 
         #region Maybe Generic Extensions
@@ -71,7 +93,41 @@
         {
             return new Maybe<T>(value, isMessage);
         }
-        
+
+        /// <summary>
+        /// Converts a <see cref="Maybe{TValue}"/> into a <see cref="Maybe"/>. This conversion currently does not perform checks for 
+        /// constructs that were created through the multiparameter constructors. IE a <see cref="Maybe{TValue}"/> created with both a 
+        /// <see cref="Maybe{TValue}.Message"/> and <see cref="Maybe{TValue}.FriendlyMessage"/> will currently only return a new 
+        /// <see cref="Maybe"/> with just a <see cref="Maybe.Message"/> value.
+        /// </summary>
+        /// <typeparam name="TValue">The type of the maybe being converted.</typeparam>
+        /// <param name="maybe">The maybe being converted.</param>
+        /// <returns>A new <see cref="Maybe"/> with the values of the current maybe.</returns>
+        public static Maybe ConvertMaybeGenericToMaybe<TValue>(this Maybe<TValue> maybe)
+        {
+            if (maybe.HasValue)
+                return new Maybe(true);
+
+            if (maybe.HasMessage && maybe.IsExceptionState)
+                return new Maybe(maybe.Message, maybe.Exception);
+
+            if (maybe.HasMessage)
+                return new Maybe(maybe.Message);
+
+            if (maybe.HasFriendlyMessage)
+                return new Maybe(maybe.FriendlyMessage, isFriendlyMessage: true);
+
+            if (maybe.IsExceptionState)
+                return new Maybe(maybe.Exception);
+
+            if (maybe.Exceptions.Count > 0)
+                return new Maybe(maybe.Exceptions);
+
+            if (maybe.)
+
+            return Maybe.Empty();
+        }
+
         #endregion Maybe Generic Extensions
     }
 }
