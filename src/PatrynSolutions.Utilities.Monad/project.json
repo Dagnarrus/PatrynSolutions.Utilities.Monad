@@ -1,5 +1,5 @@
 {
-  "version": "1.0.4",
+  "version": "1.0.5",
   "authors": [ "Jarrod Rackley" ],
   "description": "An implementation of Monad in C#. For use as a DTO in personal projects. Provides a simple data transform and DTO for return value guarantee.",
 
