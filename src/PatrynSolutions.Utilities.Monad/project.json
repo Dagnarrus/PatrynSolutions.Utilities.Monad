@@ -47,7 +47,7 @@
 
   "packOptions": {
     "owners": [ "Jarrod Rackley" ],
-    "releaseNotes": "Changed license to Apache 2.0. Added Success and Failure methods to Maybe",
+    "releaseNotes": "Changed the Maybe constructs to struct. Implemented IMaybe interface and constructor overloads for each.",
     "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0",
     "repository": {
       "url": "https://github.com/TeturactsWill/PatrynSolutions.Utilities.Monad"

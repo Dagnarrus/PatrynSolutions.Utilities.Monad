@@ -6,7 +6,8 @@
     {
         public static void Main(string[] args)
         {
-            var maybe = new Maybe<string>();
+            var val = "something";
+            var maybe = val.ToMaybe<string>();
             //Maybe<string> nulM = null;
 
             var hasValue = maybe.HasValue;

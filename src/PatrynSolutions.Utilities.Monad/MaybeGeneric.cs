@@ -15,7 +15,7 @@
         public Maybe(TValue value) 
         {
             //Perhaps compare to default(TValue)?
-            HasValue = EqualityComparer<TValue>.Default.Equals(value, default(TValue));
+            HasValue = !EqualityComparer<TValue>.Default.Equals(default(TValue), value);
             Value = value;
 
             HasMessage =
