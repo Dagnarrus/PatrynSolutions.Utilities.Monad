@@ -6,7 +6,7 @@
     /// <summary>
     /// A definition of of properties for a maybe construct to help ensure a more standard response, along with a guarantee of some response.
     /// </summary>
-    /// <typeparam name="TValue"></typeparam>
+    /// <typeparam name="TValue">The type wrapped by this maybe.</typeparam>
     public interface IMaybe<TValue>
     {
         /// <summary>
