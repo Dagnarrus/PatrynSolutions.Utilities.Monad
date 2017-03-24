@@ -1,7 +1,9 @@
-﻿{
+{
   "version": "1.0.0-*",
 
   "dependencies": {
+    "dotnet-test-xunit": "2.2.0-preview3-build1047",
+    "Microsoft.CSharp": "4.3.0",
     "NETStandard.Library": "1.6.0",
     "PatrynSolutions.Utilities.Monad": "1.0.5",
     "xunit": "2.2.0"
@@ -11,5 +13,6 @@
     "netstandard1.6": {
       "imports": "netcoreapp1.0"
     }
-  }
+  },
+  //"testRunner": "xunit"
 }

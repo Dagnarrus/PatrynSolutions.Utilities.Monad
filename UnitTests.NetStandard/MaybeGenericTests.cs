@@ -32,19 +32,51 @@
             Assert.True(numMaybe.HasValue);
             Assert.Equal(num, numMaybe.Value);
 
-            var byt = 0x24;
+            byte byt = 0x24;
             var bytMaybe = new Maybe<byte>(byt);
 
             Assert.True(bytMaybe.HasValue);
             Assert.Equal(byt, bytMaybe.Value);
 
-            var shrt = 42;
+            short shrt = 42;
+            var shrtMaybe = new Maybe<short>(shrt);
+
+            Assert.True(shrtMaybe.HasValue);
+            Assert.Equal(shrt, shrtMaybe.Value);
+
+            var lon = 6474728273L;
+            var lonMaybe = new Maybe<long>(lon);
+
+            Assert.True(lonMaybe.HasValue);
+            Assert.Equal(lon, lonMaybe.Value);
+
+            var obj = new object();
+            var objMaybe = new Maybe<object>(obj);
+
+            Assert.True(objMaybe.HasValue);
+            Assert.Equal(obj, objMaybe.Value);
+
+            dynamic dyn = new { SomeValue = 56 };
+            var dynMaybe = new Maybe<dynamic>(dyn);
+
+            Assert.True(dynMaybe.HasValue);
+            Assert.Equal(dyn, dynMaybe.Value);
         }
 
         [Fact]
         public void NullAndDefaultValueWrapped()
         {
-            
+            string val = null;
+            var maybe = new Maybe<string>(val);
+
+            Assert.False(maybe.HasValue);
+            Assert.Null(maybe.Value);
+
+            int defInt = default(int);
+            var intMaybe = new Maybe<int>(defInt);
+
+            Assert.False(intMaybe.HasValue);
+            Assert.Equal(defInt, intMaybe.Value);
         }
 
         #endregion Value/HasValue
