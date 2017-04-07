@@ -112,6 +112,13 @@
             return new Maybe<T>(value, isMessage);
         }
 
+        
+        public static IEnumerable<Maybe<TValue>> ToEnumerableMaybe<TValue>(this IEnumerable<TValue> values)
+        {
+            foreach (var value in values)
+                yield return new Maybe<TValue>(value);
+        }
+
         /// <summary>
         /// Converts a <see cref="Maybe{TValue}"/> into a <see cref="Maybe"/>. This conversion currently does not perform checks for 
         /// constructs that were created through the multiparameter constructors. IE a <see cref="Maybe{TValue}"/> created with both a 

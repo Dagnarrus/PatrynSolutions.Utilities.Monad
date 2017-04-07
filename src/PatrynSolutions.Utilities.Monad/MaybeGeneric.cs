@@ -139,8 +139,9 @@
         /// <summary>
         /// Creates a new <see cref="Maybe{TValue}"/> with the message and exception, but no value.
         /// </summary>
-        /// <param name="message">The message to be displayed to the user.</param>
+        /// <param name="message">The message to be wrapped.</param>
         /// <param name="exception">The exception thrown within the called code.</param>
+        /// <param name="isFriendlyMessage"><see cref="true"/> if the message is a friendly message intended for the user.</param>
         public Maybe(string message, Exception exception, bool isFriendlyMessage = false)
         {
             if (HasFriendlyMessage = isFriendlyMessage)
@@ -166,6 +167,40 @@
             Value = default(TValue);
 
             HasErrorCode = 
+            HasValue = false;
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="Maybe{TValue}"/> with the message and enumerable of exceptions, but no value.
+        /// </summary>
+        /// <param name="message">The message to be wrapped.</param>
+        /// <param name="exceptions">The exceptions thrown within the called code blocks.</param>
+        /// <param name="isFriendlyMessage"><see cref="true"/> if the message is a friendly message intended for the user.</param>
+        public Maybe(string message, IEnumerable<Exception> exceptions, bool isFriendlyMessage = false)
+        {
+            if (HasFriendlyMessage = isFriendlyMessage)
+            {
+                FriendlyMessage = message;
+
+                Message = null;
+                HasMessage = false;
+            }
+            else
+            {
+                Message = message;
+                HasMessage = true;
+
+                FriendlyMessage = null;
+            }
+
+            IsExceptionState = exceptions != null;
+            Exceptions = new List<Exception>(exceptions ?? new Exception[0]);
+            Exception = null;
+
+            ErrorCode = 0;
+            Value = default(TValue);
+
+            HasErrorCode =
             HasValue = false;
         }
 
