@@ -112,11 +112,25 @@
             return new Maybe<T>(value, isMessage);
         }
 
-        
-        public static IEnumerable<Maybe<TValue>> ToEnumerableMaybe<TValue>(this IEnumerable<TValue> values)
+        /// <summary>
+        /// Eagerly enumerates the values, wrapping each value in a <see cref="Maybe{TValue}"/> of the desired collection type. 
+        /// This method is not guaranteed to be thread safe.
+        /// </summary>
+        /// <typeparam name="TEnumerable">The enumerable type that will produce the values.</typeparam>
+        /// <typeparam name="TValue">The type of the value to be wrapped.</typeparam>
+        /// <typeparam name="TResult">The type of collection to be returned.</typeparam>
+        /// <param name="values">The values to be enumerated and wrapped.</param>
+        /// <returns>A new collection of <see cref="Maybe{TValue}"/> of the wrapped values.</returns>
+        public static TResult ToEnumerableMaybe<TEnumerable, TValue, TResult>(this TEnumerable values)
+            where TEnumerable : IEnumerable<TValue>
+            where TResult : IEnumerable<Maybe<TValue>>, ICollection<Maybe<TValue>>, new()
         {
+            var collection = new TResult();
+                
             foreach (var value in values)
-                yield return new Maybe<TValue>(value);
+                collection.Add(new Maybe<TValue>(value));
+
+            return collection;  
         }
 
         /// <summary>
