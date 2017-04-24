@@ -1,7 +1,7 @@
 {
-  "version": "1.0.5",
+  "version": "1.0.4",
   "authors": [ "Jarrod Rackley" ],
-  "description": "An implementation of Monad in C#. For use as a DTO in personal projects. Provides a simple data transform and DTO for return value guarantee.",
+  "description": "An implementation of Monad in C#. Provides a simple data DTO to guarantee some form of result, be it a desired value, exception, message, error code, etc.",
 
 
   "frameworks": {
@@ -47,12 +47,12 @@
 
   "packOptions": {
     "owners": [ "Jarrod Rackley" ],
-    "releaseNotes": "Changed the Maybe constructs to struct. Implemented IMaybe interface and constructor overloads for each.",
+    "releaseNotes": "Changed the Maybe classes to struct. Implemented IMaybe interface and constructor overloads for each. Added implicit operators to auto wrap certain values, and unbox certain properties. Added an extension for converting an enumerable of objects, to a collection of objects wrapped within the maybe.",
     "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0",
     "repository": {
       "url": "https://github.com/TeturactsWill/PatrynSolutions.Utilities.Monad"
     },
     "requireLicenseAcceptance": false,
-    "tags": [ "C#", "Monad" ]
+    "tags": [ "C#", "Monad", "Maybe" ]
   }
 }
